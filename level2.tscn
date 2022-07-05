@@ -1,0 +1,153 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://level2_Pass.gd" type="Script" id=1]
+[ext_resource path="res://map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://spike.tscn" type="PackedScene" id=3]
+[ext_resource path="res://end.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Background/BG.png" type="Texture" id=6]
+[ext_resource path="res://buttons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://level2.gd" type="Script" id=8]
+[ext_resource path="res://Musics/Calm Your Anxiety_2.mp3" type="AudioStream" id=9]
+
+[sub_resource type="Shader" id=25]
+code = "shader_type canvas_item;
+
+uniform vec2  Direction = vec2(0,1.0);
+uniform float speed  = 0.05;
+
+void fragment(){
+	COLOR  =texture(TEXTURE,UV +(Direction*TIME *speed));
+}"
+
+[sub_resource type="ShaderMaterial" id=26]
+shader = SubResource( 25 )
+shader_param/Direction = Vector2( 0, 1 )
+shader_param/speed = 0.05
+
+[node name="Level_2" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.73, 0.72 )
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite" parent="Tiles"]
+material = SubResource( 26 )
+position = Vector2( 2, 1 )
+texture = ExtResource( 6 )
+
+[node name="map" parent="Tiles" instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -851992, 15, 0, -851991, 15, 0, -851990, 15, 0, -851989, 15, 0, -851988, 15, 0, -851987, 15, 0, -851986, 15, 0, -851985, 15, 0, -851984, 15, 0, -851983, 15, 0, -851982, 15, 0, -851981, 15, 0, -851980, 15, 0, -851979, 15, 0, -851978, 15, 0, -851977, 15, 0, -851976, 15, 0, -851975, 15, 0, -851974, 15, 0, -851973, 15, 0, -851972, 15, 0, -851971, 15, 0, -851970, 15, 0, -851969, 15, 0, -917504, 15, 0, -917503, 15, 0, -917502, 15, 0, -917501, 15, 0, -917500, 15, 0, -917499, 15, 0, -917498, 15, 0, -917497, 15, 0, -917496, 15, 0, -917495, 15, 0, -917494, 15, 0, -917493, 15, 0, -917492, 15, 0, -917491, 15, 0, -917490, 15, 0, -917489, 15, 0, -917488, 15, 0, -917487, 15, 0, -917486, 15, 0, -917485, 15, 0, -917484, 15, 0, -917483, 15, 0, -917482, 15, 0, -917481, 10, 0, -786456, 19, 0, -851945, 10, 0, -720920, 19, 0, -786409, 10, 0, -655384, 19, 0, -655374, 16, 0, -655373, 17, 0, -655372, 17, 0, -655371, 17, 0, -655370, 18, 0, -720895, 16, 0, -720894, 17, 0, -720893, 17, 0, -720892, 18, 0, -720873, 10, 0, -589848, 19, 0, -589838, 20, 0, -589837, 3, 0, -589836, 3, 0, -589835, 2, 0, -589834, 19, 0, -655359, 20, 0, -655358, 4, 0, -655356, 19, 0, -655337, 10, 0, -524312, 19, 0, -524302, 20, 0, -524301, 4, 0, -524298, 19, 0, -589823, 20, 0, -589820, 19, 0, -589801, 10, 0, -458776, 19, 0, -458766, 20, 0, -458762, 19, 0, -524287, 21, 0, -524286, 22, 0, -524285, 22, 0, -524284, 23, 0, -524265, 10, 0, -393240, 19, 0, -393230, 21, 0, -393229, 22, 0, -393228, 22, 0, -393227, 22, 0, -393226, 23, 0, -458729, 10, 0, -327704, 19, 0, -393193, 10, 0, -262168, 19, 0, -327657, 10, 0, -196632, 19, 0, -262121, 10, 0, -131096, 19, 0, -196585, 10, 0, -65560, 19, 0, -131049, 10, 0, -24, 19, 0, -65513, 10, 0, 65512, 19, 0, 23, 10, 0, 131048, 19, 0, 65559, 10, 0, 196584, 19, 0, 131095, 10, 0, 262120, 19, 0, 196631, 10, 0, 327656, 19, 0, 327657, 0, 0, 327658, 0, 1, 327659, 0, 2, 262167, 10, 0, 393192, 19, 0, 393193, 0, 65536, 393194, 0, 65537, 393195, 0, 1, 393196, 0, 1, 393197, 0, 2, 327703, 10, 0, 458728, 19, 0, 458729, 0, 65536, 458730, 0, 65537, 458731, 0, 65537, 458732, 0, 65537, 458733, 0, 65538, 458738, 1, 0, 458745, 3, 0, 458746, 3, 0, 458747, 3, 0, 458751, 1, 0, 393239, 10, 0, 524264, 19, 0, 524265, 0, 65536, 524266, 0, 65537, 524267, 0, 65537, 524268, 0, 65537, 524269, 0, 65538, 458755, 0, 0, 458756, 0, 1, 458757, 0, 1, 458758, 0, 1, 458759, 0, 1, 458760, 0, 2, 458775, 10, 0, 589800, 19, 0, 589801, 0, 65536, 589802, 0, 65537, 589803, 0, 65537, 589804, 0, 65537, 589805, 0, 65538, 524291, 0, 65536, 524292, 0, 65537, 524293, 0, 65537, 524294, 0, 65537, 524295, 0, 65537, 524296, 0, 65538, 524311, 10, 0, 655336, 19, 0, 655337, 0, 65536, 655338, 0, 65537, 655339, 0, 65537, 655340, 0, 65537, 655341, 0, 65538, 589827, 0, 65536, 589828, 0, 65537, 589829, 0, 65537, 589830, 0, 65537, 589831, 0, 65537, 589832, 0, 65538, 589841, 0, 0, 589842, 0, 1, 589843, 0, 1, 589844, 0, 2, 589847, 10, 0, 720872, 19, 0, 720873, 0, 65536, 720874, 0, 65537, 720875, 0, 65537, 720876, 0, 65537, 720877, 0, 65538, 655363, 0, 65536, 655364, 0, 65537, 655365, 0, 65537, 655366, 0, 65537, 655367, 0, 65537, 655368, 0, 65538, 655377, 0, 65536, 655378, 0, 65537, 655379, 0, 65537, 655380, 0, 65538, 655383, 10, 0, 786408, 19, 0, 786409, 0, 65536, 786410, 0, 65537, 786411, 0, 65537, 786412, 0, 65537, 786413, 0, 65538, 720899, 0, 65536, 720900, 0, 65537, 720901, 0, 65537, 720902, 0, 65537, 720903, 0, 65537, 720904, 0, 65538, 720905, 4, 0, 720911, 4, 0, 720913, 0, 65536, 720914, 0, 65537, 720915, 0, 65537, 720916, 0, 65538, 720919, 10, 0, 851944, 19, 0, 851945, 0, 131072, 851946, 0, 131073, 851947, 0, 131073, 851948, 0, 131073, 851949, 0, 131074, 786435, 0, 131072, 786436, 0, 131073, 786437, 0, 131073, 786438, 0, 131073, 786439, 0, 131073, 786440, 0, 131074, 786449, 0, 131072, 786450, 0, 131073, 786451, 0, 131073, 786452, 0, 131074, 786455, 10, 0, 917480, 12, 0, 917481, 8, 0, 917482, 8, 0, 917483, 8, 0, 917484, 8, 0, 917485, 8, 0, 917486, 8, 0, 917487, 8, 0, 917488, 8, 0, 917489, 8, 0, 917490, 8, 0, 917491, 8, 0, 917492, 8, 0, 917493, 8, 0, 917494, 8, 0, 917495, 8, 0, 917496, 8, 0, 917497, 8, 0, 917498, 8, 0, 917499, 8, 0, 917500, 8, 0, 917501, 8, 0, 917502, 8, 0, 917503, 8, 0, 851968, 8, 0, 851969, 8, 0, 851970, 8, 0, 851971, 8, 0, 851972, 8, 0, 851973, 8, 0, 851974, 8, 0, 851975, 8, 0, 851976, 8, 0, 851977, 8, 0, 851978, 8, 0, 851979, 8, 0, 851980, 8, 0, 851981, 8, 0, 851982, 8, 0, 851983, 8, 0, 851984, 8, 0, 851985, 8, 0, 851986, 8, 0, 851987, 8, 0, 851988, 8, 0, 851989, 8, 0, 851990, 8, 0, 851991, 8, 0 )
+
+[node name="Spike" type="Node2D" parent="Tiles"]
+
+[node name="1" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -253, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="2" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -238, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="3" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -222, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="4" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -206, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="5" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -190, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="6" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -175, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="7" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -159, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="8" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -143, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="9" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -128, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="10" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -113, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="11" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -97, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="12" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -81, 186 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="13" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -68, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="14" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -53, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="15" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -37, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="16" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -21, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="17" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( -6, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="18" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( 9, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="19" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( 25, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="20" parent="Tiles/Spike" instance=ExtResource( 3 )]
+position = Vector2( 41, 187 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Sprite" parent="." instance=ExtResource( 4 )]
+position = Vector2( 315, 112 )
+frame = 0
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -352, -31 )
+
+[node name="buttons" parent="." instance=ExtResource( 7 )]
+position = Vector2( -9, 13 )
+
+[node name="back" parent="buttons" index="0"]
+margin_left = -351.0
+margin_top = -213.0
+margin_right = -285.0
+margin_bottom = -184.0
+
+[node name="Restart" parent="buttons" index="1"]
+margin_left = 283.0
+margin_top = -214.0
+margin_right = 371.0
+margin_bottom = -185.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[editable path="buttons"]

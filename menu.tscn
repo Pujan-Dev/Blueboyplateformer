@@ -1,0 +1,206 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Pixeled.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Background/BG.png" type="Texture" id=2]
+[ext_resource path="res://start.gd" type="Script" id=3]
+[ext_resource path="res://quit.gd" type="Script" id=4]
+[ext_resource path="res://dogicabold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Black.gd" type="Script" id=6]
+[ext_resource path="res://Background/black.png" type="Texture" id=7]
+[ext_resource path="res://newParallaxBackground.gd" type="Script" id=8]
+[ext_resource path="res://Character/Virtual Guy/Idle (32x32).png" type="Texture" id=9]
+[ext_resource path="res://menu.gd" type="Script" id=10]
+[ext_resource path="res://map.tscn" type="PackedScene" id=11]
+[ext_resource path="res://forMENU.gd" type="Script" id=12]
+[ext_resource path="res://Musics/Effects/select.wav" type="AudioStream" id=13]
+[ext_resource path="res://BF_musics.gd" type="Script" id=14]
+[ext_resource path="res://Musics/Calm Your Anxiety_2.mp3" type="AudioStream" id=15]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.219608 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.611765, 0.611765, 0.611765, 0.654902 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.462745, 0.435294, 0.435294, 0.619608 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0.219608 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.611765, 0.611765, 0.611765, 0.654902 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.462745, 0.435294, 0.435294, 0.619608 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "just"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="menu" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="Black" type="Sprite" parent="."]
+visible = false
+position = Vector2( -66, 38 )
+texture = ExtResource( 7 )
+script = ExtResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 10.196, -9.053 )
+current = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 8 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 1080 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -51, 13 )
+texture = ExtResource( 2 )
+
+[node name="start" type="Button" parent="."]
+margin_left = -129.0
+margin_top = -26.0
+margin_right = 133.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 3 )
+text = "START"
+script = ExtResource( 3 )
+
+[node name="click" type="AudioStreamPlayer2D" parent="start"]
+position = Vector2( 129, 26 )
+stream = ExtResource( 13 )
+volume_db = -2.0
+
+[node name="quit" type="Button" parent="."]
+margin_left = -133.0
+margin_top = 120.0
+margin_right = 129.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 7 )
+text = "QUIT"
+script = ExtResource( 4 )
+
+[node name="click" type="AudioStreamPlayer2D" parent="quit"]
+position = Vector2( 133, -120 )
+stream = ExtResource( 13 )
+volume_db = -2.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = -370.0
+margin_top = -204.0
+margin_right = 470.0
+margin_bottom = -83.0
+custom_fonts/font = SubResource( 4 )
+text = "BLUE BOY PLATEFORMER"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 373.0
+margin_top = 250.0
+margin_right = 816.0
+margin_bottom = 430.0
+custom_fonts/font = SubResource( 5 )
+text = "©pujan"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -375, 126 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 9 )
+hframes = 11
+script = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 10 )
+anims/just = SubResource( 11 )
+
+[node name="map" parent="." instance=ExtResource( 11 )]
+position = Vector2( 41, 37 )
+scale = Vector2( 2, 2 )
+tile_data = PoolIntArray( -851992, 15, 0, -851991, 15, 0, -851990, 15, 0, -851989, 15, 0, -851988, 15, 0, -851987, 15, 0, -851986, 15, 0, -851985, 15, 0, -851984, 15, 0, -851983, 15, 0, -851982, 15, 0, -851981, 15, 0, -851980, 15, 0, -851979, 15, 0, -851978, 15, 0, -851977, 15, 0, -851976, 15, 0, -851975, 15, 0, -851974, 15, 0, -851973, 15, 0, -851972, 15, 0, -851971, 15, 0, -851970, 15, 0, -851969, 15, 0, -917504, 15, 0, -917503, 15, 0, -917502, 15, 0, -917501, 15, 0, -917500, 15, 0, -917499, 15, 0, -917498, 15, 0, -917497, 15, 0, -917496, 15, 0, -917495, 15, 0, -917494, 15, 0, -917493, 15, 0, -917492, 15, 0, -917491, 15, 0, -917490, 15, 0, -917489, 15, 0, -917488, 15, 0, -917487, 15, 0, -917486, 15, 0, -917485, 15, 0, -917484, 15, 0, -917483, 15, 0, -917482, 15, 0, -917481, 10, 0, -786456, 12, 0, -851945, 10, 0, -720920, 12, 0, -786409, 10, 0, -655384, 12, 0, -655377, 16, 0, -655376, 17, 0, -655375, 17, 0, -655374, 17, 0, -655373, 17, 0, -655372, 17, 0, -655371, 17, 0, -655370, 17, 0, -655369, 17, 0, -655368, 17, 0, -655367, 17, 0, -655366, 17, 0, -655365, 17, 0, -655364, 17, 0, -655363, 17, 0, -655362, 17, 0, -655361, 17, 0, -720896, 17, 0, -720895, 17, 0, -720894, 17, 0, -720893, 17, 0, -720892, 17, 0, -720891, 17, 0, -720890, 17, 0, -720889, 17, 0, -720888, 17, 0, -720887, 17, 0, -720886, 17, 0, -720885, 17, 0, -720884, 17, 0, -720883, 17, 0, -720882, 18, 0, -720873, 10, 0, -589848, 12, 0, -589841, 20, 0, -655346, 19, 0, -655337, 10, 0, -524312, 12, 0, -524305, 20, 0, -524303, 7, 0, -524302, 8, 0, -524301, 8, 0, -524300, 8, 0, -524299, 8, 0, -524298, 8, 0, -524297, 8, 0, -524296, 8, 0, -524295, 8, 0, -524294, 8, 0, -524293, 8, 0, -524292, 8, 0, -524291, 8, 0, -524290, 8, 0, -524289, 8, 0, -589824, 8, 0, -589823, 8, 0, -589822, 8, 0, -589821, 8, 0, -589820, 8, 0, -589819, 8, 0, -589818, 8, 0, -589817, 8, 0, -589816, 8, 0, -589815, 8, 0, -589814, 8, 0, -589813, 11, 0, -589810, 19, 0, -589801, 10, 0, -458776, 12, 0, -458769, 20, 0, -458767, 10, 0, -524277, 12, 0, -524274, 19, 0, -524265, 10, 0, -393240, 12, 0, -393233, 20, 0, -393231, 10, 0, -458741, 12, 0, -458738, 19, 0, -458729, 10, 0, -327704, 12, 0, -327697, 20, 0, -327695, 14, 0, -327694, 15, 0, -327693, 15, 0, -327692, 15, 0, -327691, 15, 0, -327690, 15, 0, -327689, 15, 0, -327688, 15, 0, -327687, 15, 0, -327686, 15, 0, -327685, 15, 0, -327684, 15, 0, -327683, 15, 0, -327682, 15, 0, -327681, 15, 0, -393216, 15, 0, -393215, 15, 0, -393214, 15, 0, -393213, 15, 0, -393212, 15, 0, -393211, 15, 0, -393210, 15, 0, -393209, 15, 0, -393208, 15, 0, -393207, 15, 0, -393206, 15, 0, -393205, 13, 0, -393202, 19, 0, -393193, 10, 0, -262168, 12, 0, -262161, 20, 0, -327666, 19, 0, -327657, 10, 0, -196632, 12, 0, -196625, 20, 0, -262130, 19, 0, -262121, 10, 0, -131096, 12, 0, -131089, 20, 0, -196594, 19, 0, -196585, 10, 0, -65560, 12, 0, -65553, 20, 0, -131058, 19, 0, -131049, 10, 0, -24, 12, 0, -17, 20, 0, -65522, 19, 0, -65513, 10, 0, 65512, 12, 0, 65519, 20, 0, 14, 19, 0, 23, 10, 0, 131048, 12, 0, 131055, 20, 0, 65550, 19, 0, 65559, 10, 0, 196584, 12, 0, 196591, 20, 0, 131086, 19, 0, 131095, 10, 0, 262120, 12, 0, 262127, 20, 0, 196622, 19, 0, 196631, 10, 0, 327656, 12, 0, 327663, 20, 0, 327665, 0, 0, 327666, 0, 1, 327667, 0, 1, 327668, 0, 2, 262158, 19, 0, 262167, 10, 0, 393192, 12, 0, 393199, 20, 0, 393201, 0, 65536, 393202, 0, 65537, 393203, 0, 65537, 393204, 0, 65538, 327694, 19, 0, 327703, 10, 0, 458735, 20, 0, 458737, 0, 65536, 458738, 0, 65537, 458739, 0, 65537, 458740, 0, 65538, 393230, 19, 0, 393239, 10, 0, 524271, 21, 0, 524272, 22, 0, 524273, 0, 131072, 524274, 0, 131073, 524275, 0, 131073, 524276, 0, 131074, 524277, 22, 0, 524278, 22, 0, 524279, 22, 0, 524280, 22, 0, 524281, 22, 0, 524282, 22, 0, 524283, 22, 0, 524284, 22, 0, 524285, 22, 0, 524286, 22, 0, 524287, 22, 0, 458752, 22, 0, 458753, 22, 0, 458754, 22, 0, 458755, 22, 0, 458756, 22, 0, 458757, 22, 0, 458758, 22, 0, 458759, 22, 0, 458760, 22, 0, 458761, 22, 0, 458762, 22, 0, 458763, 22, 0, 458764, 22, 0, 458765, 22, 0, 458766, 23, 0, 458775, 10, 0, 589800, 12, 0, 524311, 10, 0, 655336, 12, 0, 589847, 10, 0, 720872, 12, 0, 655383, 10, 0, 720919, 10, 0, 786455, 10, 0, 917480, 12, 0, 917481, 8, 0, 917483, 8, 0, 917484, 8, 0, 917485, 8, 0, 917486, 8, 0, 917487, 8, 0, 917488, 8, 0, 917489, 8, 0, 917490, 8, 0, 917491, 8, 0, 917492, 8, 0, 917493, 8, 0, 917494, 8, 0, 917495, 8, 0, 917496, 8, 0, 917497, 8, 0, 917498, 8, 0, 917499, 8, 0, 917500, 8, 0, 917501, 8, 0, 917502, 8, 0, 917503, 8, 0, 851968, 8, 0, 851969, 8, 0, 851970, 8, 0, 851971, 8, 0, 851972, 8, 0, 851973, 8, 0, 851974, 8, 0, 851975, 8, 0, 851976, 8, 0, 851977, 8, 0, 851978, 8, 0, 851979, 8, 0, 851980, 8, 0, 851981, 8, 0, 851982, 8, 0, 851983, 8, 0, 851984, 8, 0, 851985, 8, 0, 851986, 8, 0, 851987, 8, 0, 851988, 8, 0, 851989, 8, 0, 851990, 8, 0, 851991, 8, 0 )
+
+[node name="BF_musics" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
+mix_target = 1
+script = ExtResource( 14 )
+
+[connection signal="button_down" from="start" to="start" method="_on_start_button_down"]
+[connection signal="pressed" from="start" to="start" method="_on_start_pressed"]
+[connection signal="button_down" from="quit" to="quit" method="_on_quit_button_down"]
+[connection signal="pressed" from="quit" to="quit" method="_on_quit_pressed"]
